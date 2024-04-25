@@ -26,7 +26,7 @@ st.write(":green[(Classical, Reggaeton, Rock, Others)]")
 st.markdown("#")
 
 #model=pickle.load(open('music_genre_classifier.pkl','rb'))
-model = tf.keras.models.load_model("music_genre_classifier.h5")
+
 
 
 
@@ -69,6 +69,7 @@ feature = feature.reshape(1, -1)
 
     
 if st.button(':green[Classify Genre]'):
+    model = tf.keras.models.load_model("music_genre_classifier.h5")
     predict = model.predict(feature)
     prd = pd.DataFrame(predict)
     value =  theHighest(prd.at[0, 0], prd.at[0, 1], prd.at[0, 2], prd.at[0, 3])

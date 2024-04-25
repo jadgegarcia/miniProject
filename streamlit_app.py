@@ -5,28 +5,8 @@ import tensorflow as tf
 import librosa
 
 
-def extract_audio_features(audio_file):
-    y, sr = librosa.load(audio_file)
-    onset_env = librosa.onset.onset_strength(y=y, sr=sr)
-    magnitude = np.abs(librosa.stft(y))
-
-    # Extract audio features
-    acousticness = librosa.feature.spectral_centroid(y=y, sr=sr)[0]
-    tempo = librosa.feature.tempo(y=y, sr=sr, onset_envelope=onset_env)
-    energy = librosa.feature.rms(y=y)[0]
-    loudness = librosa.amplitude_to_db(magnitude)  # In decibels
-    st.write("THIS IS IT")
-    st.write(acousticness, tempo, energy, loudness)
-    # Speechiness is not directly available in Librosa, you may need a different approach
-    # Valence is not directly available in Librosa, you may need a different approach
-    feat = np.array([acousticness, tempo, energy, loudness])
-    return feat
 
 
-# Function to filter audio files
-def is_audio_file(filename):
-    audio_extensions = ('.mp3', '.wav', '.ogg', '.flac', '.aac')
-    return filename.lower().endswith(audio_extensions)
 
 def theHighest(v1, v2, v3, v4):
     n = max(v1, v2, v3, v4)
